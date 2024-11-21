@@ -1,0 +1,7 @@
+.picker-main-container {
+    display: grid;
+    margin-top: 30px;
+    justify-items: center;
+    align-items: center;
+    gap: 20px;
+}

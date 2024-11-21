@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react"
+import IconPicker from "./components/iconPicker"
+import "./css/App.css"
+import * as Icon from 'react-feather';
 
 function App() {
+  const [showPicker, setShowPicker] = useState(false);
+  const [selectedIcon, setSelectedIcon] = useState();
+  const [IconComponent, setIconComponent] = useState(Icon["Activity"]);
+
+  const displaySelectedIcon = (icon) => {
+    setIconComponent(Icon[icon.render.displayName]);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main-container">
+      <div className="icon-opener" onClick={() => setShowPicker(!showPicker)}>
+        <IconComponent height={50} width={50} />
+      </div>
+      {
+        showPicker ? <IconPicker rowsInOnePage={4} columnsInOnePage={5} iconHeight={40} iconWidth={30} selectedIcon={displaySelectedIcon} /> : <></>
+      }
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
